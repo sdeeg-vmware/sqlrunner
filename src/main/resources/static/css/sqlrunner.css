@@ -1,0 +1,77 @@
+div.sqlrunner_title {
+    margin: 20px;
+    padding: 2px 20px;
+    /* border-radius: 20px; */
+    /* border: 1px solid #1ab9a5; */
+}
+
+div.sqlrunner_input_area {
+    margin: 20px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    color: #34302d;
+}
+
+div.sqlrunner_output_area {
+    margin: 20px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    color: #34302d;
+}
+
+div.data-source {
+    padding: 5px 2px;
+    font-size: 18;
+}
+
+select {
+    background: transparent;
+    border: 1px solid #1ab9a5;
+    font-size: 14px;
+    height: 29px;
+    padding: 0px 5px;
+    height: 20;
+}
+
+table {
+    border: 1px solid #1ab9a5;
+    border-radius: 20px;
+    border-collapse: collapse;
+    width: 100%
+}
+
+th {
+    border: 1px solid #606060;
+    background-color: #1ab9a5;
+    color: white;
+}
+
+th.id { width: 1%; }
+td {
+    border: 1px solid #1ab9a5;
+    padding: 4px
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 1px solid #1ab9a5;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    outline: none;
+    resize: none;
+}
+
+input[type=button] {
+    background-color: #1ab9a5;
+    border: 1px solid #606060;
+    color: white;
+    padding: 16px 22px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
