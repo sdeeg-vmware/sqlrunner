@@ -9,5 +9,5 @@ import org.springframework.boot.runApplication
 class SqlrunnerApplication
 
 fun main(args: Array<String>) {
-	runApplication<SqlrunnerApplication>(*args)
+    runApplication<SqlrunnerApplication>(*args)
 }

@@ -19,6 +19,20 @@ div.sqlrunner_output_area {
     color: #34302d;
 }
 
+div.sqlrunner_run_result_area {
+    margin: 20px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    color: #34302d;
+}
+
+div.sqlrunner_footer {
+    margin: 20px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    color: #34302d;
+}
+
 div.data-source {
     padding: 5px 2px;
     font-size: 18;

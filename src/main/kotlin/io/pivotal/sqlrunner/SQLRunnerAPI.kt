@@ -13,7 +13,9 @@ import java.util.ArrayList
 import javax.sql.DataSource
 
 @RestController
-class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>, val dataSourceList: List<DataSource>) {
+class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>,
+                   val dataSourceList: List<DataSource>,
+                   val sqlService: SQLService) {
 
     @GetMapping("/hello")
     fun getHello() = setOf("hello, world")
@@ -31,30 +33,29 @@ class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>, val dataSourc
     fun getDataSources() = jdbcTemplateList.keys
 
     @PostMapping("/runsql")
-    fun runSQL(@RequestBody sqlCommand: SQLCommand) =
-        jdbcTemplateList.get(sqlCommand.ds)?.queryForList(sqlCommand.sql) ?: ArrayList<Map<String, Any>>(0)
+    fun runSQL(@RequestBody sqlCommand: SQLCommand) = sqlService.parseAndRun(sqlCommand)
 
-    @Throws(SQLException::class)
-    protected fun getEntitiesFromResultSet(resultSet: ResultSet): List<Map<String, Any>> {
-        println("getting entities from result set")
-        val entities = ArrayList<Map<String, Any>>()
-        while (resultSet.next()) {
-            entities.add(getEntityFromResultSet(resultSet))
-        }
-        return entities
-    }
+//    @Throws(SQLException::class)
+//    protected fun getEntitiesFromResultSet(resultSet: ResultSet): List<Map<String, Any>> {
+//        println("getting entities from result set")
+//        val entities = ArrayList<Map<String, Any>>()
+//        while (resultSet.next()) {
+//            entities.add(getEntityFromResultSet(resultSet))
+//        }
+//        return entities
+//    }
 
-    @Throws(SQLException::class)
-    protected fun getEntityFromResultSet(resultSet: ResultSet): Map<String, Any> {
-        println("getting single entity from result set")
-        val metaData = resultSet.metaData
-        val columnCount = metaData.columnCount
-        val resultsMap = HashMap<String, Any>()
-        for (i in 1..columnCount) {
-            val columnName = metaData.getColumnName(i).toLowerCase()
-            val obj = resultSet.getObject(i)
-            resultsMap[columnName] = obj
-        }
-        return resultsMap
-    }
+//    @Throws(SQLException::class)
+//    protected fun getEntityFromResultSet(resultSet: ResultSet): Map<String, Any> {
+//        println("getting single entity from result set")
+//        val metaData = resultSet.metaData
+//        val columnCount = metaData.columnCount
+//        val resultsMap = HashMap<String, Any>()
+//        for (i in 1..columnCount) {
+//            val columnName = metaData.getColumnName(i).toLowerCase()
+//            val obj = resultSet.getObject(i)
+//            resultsMap[columnName] = obj
+//        }
+//        return resultsMap
+//    }
 }
