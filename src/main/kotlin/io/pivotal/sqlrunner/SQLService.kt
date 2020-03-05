@@ -18,7 +18,8 @@ class SQLService(val jdbcTemplateList: Map<String, JdbcTemplate>) {
 
         try {
             if(jt == null) { logger.warn("No datasource with name "+sqlCommand.ds)  }
-            else if(sqlCommand.sql.toLowerCase().startsWith("select")) {
+            else if(sqlCommand.sql.toLowerCase().startsWith("select") ||
+                    sqlCommand.sql.toLowerCase().startsWith("show")) {
                 retVal = SQLRunResult(true, "ran the select", jt.queryForList(sqlCommand.sql))
             }
             else if(sqlCommand.sql.toLowerCase().startsWith("create")) {

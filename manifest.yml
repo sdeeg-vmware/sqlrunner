@@ -1,8 +1,8 @@
 ---
 defaults: &defaults
-  buildpacks:
-    - java_buildpack_offline
-  stack: cflinuxfs3
+#  buildpacks:
+#    - java_buildpack_offline
+#  stack: cflinuxfs3
   instances: 1
 
 applications:
