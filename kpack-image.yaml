@@ -1,0 +1,15 @@
+apiVersion: build.pivotal.io/v1alpha1
+kind: Image
+metadata:
+  name: sqlrunner-image
+spec:
+  tag: registry.planet10.lab/util/sqlrunner
+  serviceAccount: kpack-sa
+  cacheSize: "1.5Gi"
+  builder:
+    name: paketo-builder
+    kind: ClusterBuilder
+  source:
+    git:
+      url: https://github.com/sdeeg-pivotal/sqlrunner
+      revision: master

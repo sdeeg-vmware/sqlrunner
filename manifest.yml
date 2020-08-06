@@ -9,6 +9,5 @@ applications:
   - name: sqlrunner
     <<: *defaults
     path: ./build/libs/sqlrunner-0.0.1-SNAPSHOT.jar
-#    services:
-#      - mysql-test-db
-#      - pg-test-db
+    services:
+      - greeting-db

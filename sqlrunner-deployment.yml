@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+#  creationTimestamp: null
+  labels:
+    app: sqlrunner
+  name: sqlrunner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqlrunner
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sqlrunner
+    spec:
+      containers:
+      - image: registry.planet10.lab/util/sqlrunner
+        name: sqlrunner
+        resources: { }
+      imagePullSecrets:
+      - name: harbor-credentials
+status: {}
