@@ -74,6 +74,6 @@ function sqlRunResponse(data) {
         $("div.sqlrunner_output_area").html("<table></table>");
     }
 
-    $("div.sqlrunner_footer").html("End of line");
+    $("div.sqlrunner_footer").html("end of line");
 
 }

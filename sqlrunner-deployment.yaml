@@ -1,7 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sqlrunner
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-#  creationTimestamp: null
+  namespace: sqlrunner
   labels:
     app: sqlrunner
   name: sqlrunner
@@ -24,3 +29,23 @@ spec:
       imagePullSecrets:
       - name: harbor-credentials
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: sqlrunner
+  labels:
+    app: sqlrunner-np
+  name: sqlrunner-np
+spec:
+  ports:
+    - name: sqlrunner-svc-ports
+      port: 80
+      targetPort: 8080
+      nodePort: 32438
+      protocol: TCP
+  selector:
+    app: sqlrunner
+  type: NodePort
+status:
+  loadBalancer: {}
