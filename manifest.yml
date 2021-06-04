@@ -1,10 +1,8 @@
 ---
-defaults: &defaults
-  instances: 1
-
 applications:
   - name: sqlrunner
-    <<: *defaults
     path: ./build/libs/sqlrunner-0.0.1-SNAPSHOT.jar
+    health-check-invocation-timeout: 21
+    timeout: 12
 #    services:
-#      - greeting-db
+#      - my-db
