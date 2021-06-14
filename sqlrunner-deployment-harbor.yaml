@@ -7,6 +7,7 @@ metadata:
     app: sqlrunner
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: sqlrunner
@@ -16,7 +17,7 @@ spec:
         app: sqlrunner
     spec:
       containers:
-      - image: registry.planet10.lab/apps/sqlrunner@sha256:fbfddb0b258d0e53d4c991f7ae2d3de5f6b8d1dfeda1b3b8a76eceea2f5d11bd
+      - image: registry.planet10.lab/apps/sqlrunner@sha256:4077b292c9326a8bc67980c21091a9a931a63fceefdde99d073904a1d27c0143
         name: sqlrunner
       imagePullSecrets:
       - name: harbor-credentials

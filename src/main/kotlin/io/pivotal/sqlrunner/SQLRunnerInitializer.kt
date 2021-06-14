@@ -24,8 +24,8 @@ class SQLRunnerInitializer {
     fun applicationRunner(jdbcTemplates: Map<String,JdbcTemplate>) = ApplicationRunner {
         logger.info("Profile create-test-data active, initializing the app with data.")
         if(jdbcTemplates.size == 0) {
-            logger.info("jdbcTemplates.size=0")
-            //Create the H2 datasource and jdbcTemplate
+            //If this happens something is very wrong
+            logger.error("jdbcTemplates.size=0:  Check configuration and make sure datasource is created.")
         }
         jdbcTemplates.forEach { key, jdbcTemplate ->
             if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "H2") {
@@ -33,7 +33,6 @@ class SQLRunnerInitializer {
                 jdbcTemplate.execute("create table my_table (id INT, my_data varchar(32))")
                 jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
                 jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
-                jdbcTemplate.execute("insert into my_table values ( 3, 'Hello Nestle')")
 
                 jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
                 jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
