@@ -36,7 +36,7 @@ class SQLRunnerInitializer {
                 jdbcTemplate.execute("insert into my_table values ( 42, 'life, the universe, everything')")
 
                 jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
-                jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
+                jdbcTemplate.execute("insert into table2 values ( 1, 'Nestle Workshop')")
                 jdbcTemplate.execute("insert into table2 values ( 2, 'roll')")
             }
             else if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
