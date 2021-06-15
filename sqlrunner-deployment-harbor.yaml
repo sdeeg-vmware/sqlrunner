@@ -17,7 +17,8 @@ spec:
         app: sqlrunner
     spec:
       containers:
-      - image: registry.planet10.lab/apps/sqlrunner@sha256:4077b292c9326a8bc67980c21091a9a931a63fceefdde99d073904a1d27c0143
-        name: sqlrunner
+      - name: sqlrunner
+        image: registry.planet10.lab/apps/sqlrunner:latest
+#        image: registry.planet10.lab/apps/sqlrunner@sha256:109b2a397e1d164783bf34d4aebdf001d5412eb6a958ed8781980cddb6304ac9
       imagePullSecrets:
       - name: harbor-credentials
