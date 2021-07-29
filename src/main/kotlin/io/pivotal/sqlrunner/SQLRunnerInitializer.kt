@@ -43,13 +43,6 @@ class SQLRunnerInitializer {
             else if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
                 logger.info("Creating tables in MySQL database")
                 //TODO: add logic to see if tables already exist and create if necessary
-//                jdbcTemplate.execute("create table my_table (id INT, my_data varchar(32))")
-//                jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
-//                jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
-//
-//                jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
-//                jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
-//                jdbcTemplate.execute("insert into table2 values ( 2, 'roll')")
             }
             else {
                 logger.info("Did not initialize DB: ${jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName}")
