@@ -30,7 +30,7 @@ class SQLRunnerInitializer {
         jdbcTemplates.forEach { key, jdbcTemplate ->
             if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "H2") {
                 logger.info("Creating tables in H2 database")
-                jdbcTemplate.execute("create table my_table (id INT, my_data varchar(32))")
+                jdbcTemplate.execute("create table my_table (id INT, my_data varchar(64))")
                 jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
                 jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
                 jdbcTemplate.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
