@@ -34,7 +34,7 @@ class SQLRunnerInitializer {
                 jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
                 jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
                 jdbcTemplate.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
-                jdbcTemplate.execute("insert into my_table values ( 4, 'TBS .... are you there?')")
+                jdbcTemplate.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
                 jdbcTemplate.execute("insert into my_table values ( 42, 'life, the universe, everything')")
 
                 jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
