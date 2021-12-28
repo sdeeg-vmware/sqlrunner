@@ -1,4 +1,4 @@
-package io.pivotal.sqlrunner
+package com.vmware.sqlrunner
 
 import org.slf4j.LoggerFactory
 import org.springframework.boot.ApplicationRunner
@@ -27,28 +27,28 @@ class SQLRunnerInitializer {
             //If this happens something is very wrong
             logger.error("jdbcTemplates.size=0:  Check configuration and make sure datasource is created.")
         }
-        jdbcTemplates.forEach { key, jdbcTemplate ->
-            if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "H2") {
-                logger.info("Creating tables in H2 database")
-                jdbcTemplate.execute("create table my_table (id INT, my_data varchar(64))")
-                jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
-                jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
-                jdbcTemplate.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
-                jdbcTemplate.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
-                jdbcTemplate.execute("insert into my_table values ( 42, 'life, the universe, everything')")
+    //     jdbcTemplates.forEach { key, jdbcTemplate ->
+    //         if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "H2") {
+    //             logger.info("Creating tables in H2 database")
+    //             jdbcTemplate.execute("create table my_table (id INT, my_data varchar(64))")
+    //             jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
+    //             jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
+    //             jdbcTemplate.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
+    //             jdbcTemplate.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
+    //             jdbcTemplate.execute("insert into my_table values ( 42, 'life, the universe, everything')")
 
-                jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
-                jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
-                jdbcTemplate.execute("insert into table2 values ( 2, 'roll')")
-            }
-            else if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
-                logger.info("Creating tables in MySQL database")
-                //TODO: add logic to see if tables already exist and create if necessary
-            }
-            else {
-                logger.info("Did not initialize DB: ${jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName}")
-            }
-        }
+    //             jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
+    //             jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
+    //             jdbcTemplate.execute("insert into table2 values ( 2, 'roll')")
+    //         }
+    //         else if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
+    //             logger.info("Creating tables in MySQL database")
+    //             //TODO: add logic to see if tables already exist and create if necessary
+    //         }
+    //         else {
+    //             logger.info("Did not initialize DB: ${jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName}")
+    //         }
+    //     }
     }
 }
 

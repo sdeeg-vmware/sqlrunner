@@ -1,4 +1,4 @@
-package io.pivotal.sqlrunner
+package com.vmware.sqlrunner
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 //import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso

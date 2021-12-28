@@ -1,4 +1,4 @@
-package io.pivotal.sqlrunner
+package com.vmware.sqlrunner
 
 class SQLCommand(val ds: String, val sql: String)
 

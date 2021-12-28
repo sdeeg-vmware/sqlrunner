@@ -1,4 +1,4 @@
-package io.pivotal.sqlrunner
+package com.vmware.sqlrunner
 
 import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate

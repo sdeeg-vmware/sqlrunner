@@ -1,4 +1,4 @@
-package io.pivotal.sqlrunner
+package com.vmware.sqlrunner
 
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceUtils
