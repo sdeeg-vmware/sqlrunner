@@ -18,8 +18,6 @@ spec:
     spec:
       containers:
       - name: sqlrunner
-#        image: registry.planet10.lab/apps/sqlrunner:latest
-#        image: registry.planet10.lab/apps/sqlrunner@sha256:xxx
-        image: registry.planet10.lab/apps/sqlrunner:b4.20210729.234431
+        image: registry20.planet10.lab/apps/sqlrunner:latest
       imagePullSecrets:
       - name: harbor-credentials
