@@ -1,3 +1,5 @@
+//TODO: VMware-ize the color scheme
+
 div.sqlrunner_title {
     margin: 20px;
     padding: 2px 20px;
@@ -26,7 +28,7 @@ div.sqlrunner_run_result_area {
     color: #34302d;
 }
 
-div.sqlrunner_footer {
+div.sqlrunner_eol {
     margin: 20px;
     padding: 2px 20px;
     border-radius: 20px;

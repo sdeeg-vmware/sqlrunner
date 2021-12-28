@@ -27,28 +27,29 @@ class SQLRunnerInitializer {
             //If this happens something is very wrong
             logger.error("jdbcTemplates.size=0:  Check configuration and make sure datasource is created.")
         }
-    //     jdbcTemplates.forEach { key, jdbcTemplate ->
-    //         if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "H2") {
-    //             logger.info("Creating tables in H2 database")
-    //             jdbcTemplate.execute("create table my_table (id INT, my_data varchar(64))")
-    //             jdbcTemplate.execute("insert into my_table values ( 1, 'hello, world')")
-    //             jdbcTemplate.execute("insert into my_table values ( 2, 'foo bar baz')")
-    //             jdbcTemplate.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
-    //             jdbcTemplate.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
-    //             jdbcTemplate.execute("insert into my_table values ( 42, 'life, the universe, everything')")
+        jdbcTemplates.forEach{ templateKV -> //why can't I do this as key, jdbcTemplate?
+            logger.info("populating DB for template ${templateKV.key}")
+            if(templateKV.value.dataSource?.connection?.metaData?.databaseProductName == "H2") {
+                logger.info("Creating tables in H2 database")
+                templateKV.value.execute("create table my_table (id INT, my_data varchar(64))")
+                templateKV.value.execute("insert into my_table values ( 1, 'hello, world')")
+                templateKV.value.execute("insert into my_table values ( 2, 'foo bar baz')")
+                templateKV.value.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
+                templateKV.value.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
+                templateKV.value.execute("insert into my_table values ( 42, 'life, the universe, everything')")
 
-    //             jdbcTemplate.execute("create table table2 (id INT, your_data varchar(32))")
-    //             jdbcTemplate.execute("insert into table2 values ( 1, 'rock')")
-    //             jdbcTemplate.execute("insert into table2 values ( 2, 'roll')")
-    //         }
-    //         else if(jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
-    //             logger.info("Creating tables in MySQL database")
-    //             //TODO: add logic to see if tables already exist and create if necessary
-    //         }
-    //         else {
-    //             logger.info("Did not initialize DB: ${jdbcTemplate.dataSource?.connection?.metaData?.databaseProductName}")
-    //         }
-    //     }
+                templateKV.value.execute("create table table2 (id INT, your_data varchar(32))")
+                templateKV.value.execute("insert into table2 values ( 1, 'rock')")
+                templateKV.value.execute("insert into table2 values ( 2, 'roll')")
+            }
+            else if(templateKV.value.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
+             logger.info("Creating tables in MySQL database")
+             //TODO: add logic to see if tables already exist and create if necessary
+            }
+            else {
+             logger.info("Did not initialize DB: ${templateKV.value.dataSource?.connection?.metaData?.databaseProductName}")
+            }
+        }
     }
 }
 
@@ -58,8 +59,12 @@ class SQLRunnerInitializer {
 @Configuration
 @Profile("cloud")
 class CloudInitializer() {
+    private val logger = LoggerFactory.getLogger(javaClass)
     @Bean
-    fun jdbcTemplates(dataSourceList: List<DataSource>) = dataSourceList.map {
-        it.connection.metaData.databaseProductName to JdbcTemplate(it)
-    }.toMap()
+    fun jdbcTemplates(dataSourceList: List<DataSource>) = {
+        logger.info("Initializing a map, jdbcTemplates, with key databaseProductName and value new JdbcTemplate from the DataSource")
+        dataSourceList.map {
+            it.connection.metaData.databaseProductName to JdbcTemplate(it)
+        }.toMap()
+    }
 }

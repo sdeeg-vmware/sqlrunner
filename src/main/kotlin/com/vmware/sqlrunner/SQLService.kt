@@ -4,7 +4,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Service
 import java.sql.SQLException
-import java.util.ArrayList
+import java.util.*
 
 @Service
 class SQLService(val jdbcTemplateList: Map<String, JdbcTemplate>) {
@@ -18,19 +18,19 @@ class SQLService(val jdbcTemplateList: Map<String, JdbcTemplate>) {
 
         try {
             if(jt == null) { logger.warn("No datasource with name "+sqlCommand.ds)  }
-            else if(sqlCommand.sql.toLowerCase().startsWith("select") ||
-                    sqlCommand.sql.toLowerCase().startsWith("show")) {
-                retVal = SQLRunResult(true, "ran the select", jt.queryForList(sqlCommand.sql))
+            else if(sqlCommand.sql.lowercase(Locale.getDefault()).startsWith("select") ||
+                sqlCommand.sql.lowercase(Locale.getDefault()).startsWith("show")) {
+                retVal = SQLRunResult(true, "ran the queryForList", jt.queryForList(sqlCommand.sql))
             }
-            else if(sqlCommand.sql.toLowerCase().startsWith("create")) {
+            else if (sqlCommand.sql.lowercase(Locale.getDefault()).startsWith("create")) {
                 jt.execute(sqlCommand.sql)
-                retVal = SQLRunResult(true, "Ran create statement", emptyList)
-            }
-            else if(sqlCommand.sql.toLowerCase().matches(Regex("(insert|update|delete).*"))) {
+                retVal = SQLRunResult(true, "Ran create (execute) statement", emptyList)
+            } else if (sqlCommand.sql.lowercase(Locale.getDefault()).matches(Regex("(insert|update|delete).*"))) {
                 val updateResultInt = jt.update(sqlCommand.sql)
-                retVal = SQLRunResult(true, "Ran update statement with result"+updateResultInt, emptyList)
+                retVal = SQLRunResult(true, "Ran update statement with result" + updateResultInt, emptyList)
+            } else {
+                logger.warn("SQL $ command not recognized.", sqlCommand.sql)
             }
-            else { logger.warn("SQL $ command not recognized.", sqlCommand.sql) }
         } catch(ex: Exception) {
             retVal = SQLRunResult(false, ""+ex.message, emptyList)
         }

@@ -20,9 +20,6 @@ class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>,
     @GetMapping("/hello")
     fun getHello() = setOf("hello, world")
 
-//    @GetMapping("/sample")
-//    fun getSampleCommand() = SQLCommand("H2", "select * from tab")
-
     //TODO: Get actual list of datasources
     @GetMapping("/getDataSourceInfo")
     fun getDataSourceInfo():String {

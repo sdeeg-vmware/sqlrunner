@@ -39,11 +39,6 @@ function sqlRunResponse(data) {
     var sqlRunResponse = JSON.parse(data.responseText);
     var responseData = sqlRunResponse.data;
 
-    //console.log("Success: "+sqlRunResponse.success+" Message: "+sqlRunResponse.message);
-//    var resultTable = "<table>";
-//    resultTable += "<tr><td>Success</td><td>"+sqlRunResponse.success+"</td></tr>";
-//    resultTable += "<tr><td>Message</td><td>"+sqlRunResponse.message+"</td></tr></table>";
-//    $("div.sqlrunner_run_result_area").html(resultTable);
     $("div.sqlrunner_run_result_area").html("<b>Success:</b> "+sqlRunResponse.success+" <b>Message:</b> "+sqlRunResponse.message);
 
     if(sqlRunResponse.success === true) {
@@ -74,6 +69,6 @@ function sqlRunResponse(data) {
         $("div.sqlrunner_output_area").html("<table></table>");
     }
 
-    $("div.sqlrunner_footer").html("end of line");
+    $("div.sqlrunner_eol").html("end of line");
 
 }
