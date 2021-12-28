@@ -1,0 +1,36 @@
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     name: sqlrunner
+#   name: sqlrunner
+#   namespace: sqlrunner
+# spec:
+#   ports:
+#   - port: 80
+#     protocol: TCP
+#     targetPort: 8080
+#   selector:
+#     name: sqlrunner
+#   sessionAffinity: None
+#   type: ClusterIP  # please note the type here from NodePort to ClusterIP and the different spec.ports.* section
+# status:
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress # Orf, we introduce a an ingress Object now that helps us route things
+metadata:
+  name: sqlrunner-ingress
+  namespace: sqlrunner
+spec:
+  rules:
+  - host: sqlrunner.yoyodyne.tkgs.planet10.lab
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sqlrunner
+            port:
+              number: 80
