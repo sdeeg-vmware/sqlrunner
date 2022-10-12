@@ -24,13 +24,13 @@ metadata:
   namespace: sqlrunner
 spec:
   rules:
-  - host: sqlrunner.yoyodyne.tkgs.planet10.lab
+  - host: sqlrunner.banzi.tkgs.planet10.lab
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: sqlrunner
+            name: sqlrunner-svc-internal
             port:
               number: 80

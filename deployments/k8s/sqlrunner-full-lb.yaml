@@ -26,3 +26,20 @@ spec:
         image: registry.planet10.lab/apps/sqlrunner:1.0
 #      imagePullSecrets:
 #      - name: registry20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: sqlrunner
+  name: sqlrunner-lb
+spec:
+  ports:
+    - name: sqlrunner-svc-ports
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: sqlrunner
+  type: LoadBalancer
+status:
+  loadBalancer: {}
