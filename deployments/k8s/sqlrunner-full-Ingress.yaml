@@ -26,8 +26,8 @@ spec:
       containers:
       - name: sqlrunner
         image: registry.planet10.lab/apps/sqlrunner:1.0
-      imagePullSecrets:
-      - name: harbor-credentials
+      # imagePullSecrets:
+      # - name: harbor-credentials
 ---
 apiVersion: v1
 kind: Service
@@ -35,7 +35,7 @@ metadata:
   name: sqlrunner-svc-internal
   namespace: sqlrunner
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: sqlrunner.banzi.tkgs.planet10.lab
+    external-dns.alpha.kubernetes.io/hostname: sqlrunner.banzai.tkgs.planet10.lab
 spec:
   type: NodePort
   ports:
@@ -52,9 +52,9 @@ metadata:
   name: sqlrunner-ingress
   namespace: sqlrunner
 spec:
-#  ingressClassName: avi-lb
+  ingressClassName: avi-lb
   rules:
-  - host: sqlrunner.banzi.tkgs.planet10.lab
+  - host: sqlrunner.banzai.tkgs.planet10.lab
     http:
       paths:
       - path: /

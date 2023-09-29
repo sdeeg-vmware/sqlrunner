@@ -25,7 +25,7 @@ spec:
       - name: sqlrunner
         image: registry.planet10.lab/apps/sqlrunner:1.0
 #      imagePullSecrets:
-#      - name: registry20
+#      - name: registry-secret
 ---
 apiVersion: v1
 kind: Service
