@@ -4,7 +4,6 @@ metadata:
   name: sqlrunner
   labels:
     node-port: allowed
-
 ---
 apiVersion: apps/v1
 kind: Deployment

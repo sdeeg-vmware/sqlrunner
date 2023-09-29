@@ -2,7 +2,9 @@
 applications:
   - name: sqlrunner
     path: ./build/libs/sqlrunner-0.0.1-SNAPSHOT.jar
-    health-check-invocation-timeout: 21
-    timeout: 12
+#    health-check-invocation-timeout: 21
+#    timeout: 12
 #    services:
 #      - my-db
+#    env:
+#      JBP_CONFIG_OPEN_JDK_JRE: '{ "jre": { version: 11.+ } }'
