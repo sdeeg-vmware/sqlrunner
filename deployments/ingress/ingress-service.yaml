@@ -18,7 +18,7 @@
 # status:
 ---
 apiVersion: networking.k8s.io/v1
-kind: Ingress # Orf, we introduce a an ingress Object now that helps us route things
+kind: Ingress
 metadata:
   name: sqlrunner-ingress
   namespace: sqlrunner

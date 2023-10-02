@@ -55,16 +55,18 @@ class SQLRunnerInitializer {
 
 /*
     If we're in the cloud, get the bound datasources and create a jdbcTemplate for each.
+
+    I don't know what this is, so we'll comment it out for now.
  */
-@Configuration
-@Profile("cloud")
-class CloudInitializer() {
-    private val logger = LoggerFactory.getLogger(javaClass)
-    @Bean
-    fun jdbcTemplates(dataSourceList: List<DataSource>) = {
-        logger.info("Initializing a map, jdbcTemplates, with key databaseProductName and value new JdbcTemplate from the DataSource")
-        dataSourceList.map {
-            it.connection.metaData.databaseProductName to JdbcTemplate(it)
-        }.toMap()
-    }
-}
+// @Configuration
+// @Profile("cloud")
+// class CloudInitializer() {
+//     private val logger = LoggerFactory.getLogger(javaClass)
+//     @Bean
+//     fun jdbcTemplates(dataSourceList: List<DataSource>) = {
+//         logger.info("Initializing a map, jdbcTemplates, with key databaseProductName and value new JdbcTemplate from the DataSource")
+//         dataSourceList.map {
+//             it.connection.metaData.databaseProductName to JdbcTemplate(it)
+//         }.toMap()
+//     }
+// }
