@@ -2,9 +2,17 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: sqlrunner
+  description: SQLRunner v2
+  tags:
+    - app-accelerator
+    - java
+    - spring
+    - web
+    - tanzu
   annotations:
-    github.com/project-slug: sdeeg-vmware/sqlrunner
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=sqlrunner'
+    'github.com/project-slug': 'sdeeg-vmware/sqlrunner'
 spec:
-  type: other
-  lifecycle: unknown
-  owner: sdeeg-vmware
+  type: service
+  lifecycle: experimental
+  owner: default-team
