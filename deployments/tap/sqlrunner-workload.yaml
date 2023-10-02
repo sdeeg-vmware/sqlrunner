@@ -6,6 +6,10 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: sqlrunner
 spec:
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: "17"
   params:
   - name: annotations
     value:
