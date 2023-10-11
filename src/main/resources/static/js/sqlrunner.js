@@ -4,7 +4,7 @@
 */
 function initializePage() {
     $.ajax({
-        url: "/getDataSources",
+        url: "/getJdbcTemplates",
         type: "GET",
         complete: processDataSourceList
     });

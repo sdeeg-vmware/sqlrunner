@@ -20,14 +20,14 @@ class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>,
     @GetMapping("/hello")
     fun getHello() = setOf("hello, world")
 
-    //TODO: Get actual list of datasources
-    @GetMapping("/getDataSourceInfo")
+    //TODO: Add parameter of template ID (or name), return the details of the JdbcTemplate
+    @GetMapping("/getJdbcTemplateInfo")
     fun getDataSourceInfo():String {
         return dataSourceList.size.toString()
     }
 
-    @GetMapping("/getDataSources")
-    fun getDataSources() = jdbcTemplateList.keys
+    @GetMapping("/getJdbcTemplates")
+    fun getJdbcTemplates() = jdbcTemplateList.keys
 
     @PostMapping("/runsql")
     fun runSQL(@RequestBody sqlCommand: SQLCommand) = sqlService.parseAndRun(sqlCommand)
