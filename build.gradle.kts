@@ -32,7 +32,7 @@ dependencies {
 	// runtimeOnly("com.mysql:mysql-connector-j")
 	// runtimeOnly("com.oracle.database.jdbc:ojdbc8")
 	// runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-	// runtimeOnly("org.postgresql:postgresql")
+	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
