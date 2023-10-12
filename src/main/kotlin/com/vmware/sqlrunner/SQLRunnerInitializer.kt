@@ -21,6 +21,31 @@ class SQLRunnerInitializer {
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @Bean
+    public fun H2JdbcTemplate(h2DataSource: DataSource): JdbcTemplate {
+        
+        logger.info("The H2 JdbcTemplate")
+        return JdbcTemplate( h2DataSource )
+    }
+
+    @Bean
+    public fun secondH2JdbcTemplate(h2DataSource: DataSource): JdbcTemplate {
+        
+        logger.info("Creating third H2 JdbcTemplate")
+        return JdbcTemplate( h2DataSource )
+    }
+
+    @Bean
+    public fun h2DataSource(): DataSource {
+        logger.info("Creating a H2 DataSource")
+        val dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.h2.Driver");
+        dataSourceBuilder.url("jdbc:h2:~/test");
+        dataSourceBuilder.username("sa");
+        dataSourceBuilder.password("");
+        return dataSourceBuilder.build();
+    }
+
+    @Bean
     fun applicationRunner(jdbcTemplates: Map<String,JdbcTemplate>) = ApplicationRunner {
         logger.info("Profile create-test-data active, initializing the app with data.")
         if(jdbcTemplates.size == 0) {
@@ -30,17 +55,19 @@ class SQLRunnerInitializer {
         jdbcTemplates.forEach{ templateKV -> //why can't I do this as key, jdbcTemplate?
             logger.info("populating DB for template ${templateKV.key}")
             if(templateKV.value.dataSource?.connection?.metaData?.databaseProductName == "H2") {
-                logger.info("Creating tables in H2 database")
-                templateKV.value.execute("create table my_table (id INT, my_data varchar(64))")
-                templateKV.value.execute("insert into my_table values ( 1, 'hello, world')")
-                templateKV.value.execute("insert into my_table values ( 2, 'foo bar baz')")
-                templateKV.value.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
-                templateKV.value.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
-                templateKV.value.execute("insert into my_table values ( 42, 'life, the universe, everything')")
-
-                templateKV.value.execute("create table table2 (id INT, your_data varchar(32))")
-                templateKV.value.execute("insert into table2 values ( 1, 'rock')")
-                templateKV.value.execute("insert into table2 values ( 2, 'roll')")
+                try {
+                    logger.info("Creating tables in H2 database")
+                    templateKV.value.execute("create table my_table (id INT, my_data varchar(64))")
+                    templateKV.value.execute("insert into my_table values ( 1, 'hello, world')")
+                    templateKV.value.execute("insert into my_table values ( 2, 'foo bar baz')")
+                    templateKV.value.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
+                    templateKV.value.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
+                    templateKV.value.execute("insert into my_table values ( 42, 'life, the universe, everything')")
+    
+                    templateKV.value.execute("create table table2 (id INT, your_data varchar(32))")
+                    templateKV.value.execute("insert into table2 values ( 1, 'rock')")
+                    templateKV.value.execute("insert into table2 values ( 2, 'roll')")
+                } catch(e: Exception) { logger.info("Got an exception") }
             }
             else if(templateKV.value.dataSource?.connection?.metaData?.databaseProductName == "MySQL") {
              logger.info("Creating tables in MySQL database")

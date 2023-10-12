@@ -22,7 +22,7 @@ class SQLRunnerAPI(val jdbcTemplateList: Map<String,JdbcTemplate>,
 
     //TODO: Add parameter of template ID (or name), return the details of the JdbcTemplate
     @GetMapping("/getJdbcTemplateInfo")
-    fun getDataSourceInfo():String {
+    fun getJdbcTemplateInfo():String {
         return dataSourceList.size.toString()
     }
 
