@@ -61,7 +61,6 @@ class SQLRunnerInitializer {
                     templateKV.value.execute("insert into my_table values ( 1, 'hello, world')")
                     templateKV.value.execute("insert into my_table values ( 2, 'foo bar baz')")
                     templateKV.value.execute("insert into my_table values ( 3, 'No matter where you go, there you are')")
-                    templateKV.value.execute("insert into my_table values ( 4, 'TBS .... are you there?  This is a github edit.')")
                     templateKV.value.execute("insert into my_table values ( 42, 'life, the universe, everything')")
     
                     templateKV.value.execute("create table table2 (id INT, your_data varchar(32))")
