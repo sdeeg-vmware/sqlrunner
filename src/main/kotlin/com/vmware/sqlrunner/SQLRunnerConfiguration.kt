@@ -11,23 +11,23 @@ import javax.sql.DataSource
 public class SQLRunnerConfiguration {
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    @Bean
-    public fun secondH2JDBCTemplate(): JdbcTemplate {
+    // @Bean
+    // public fun secondH2JDBCTemplate(): JdbcTemplate {
         
-        logger.info("Creating second H2 JdbcTemplate")
-        return JdbcTemplate( secondH2() )
-    }
+    //     logger.info("Creating second H2 JdbcTemplate")
+    //     return JdbcTemplate( secondH2() )
+    // }
 
-    @Bean
-    public fun secondH2(): DataSource {
-        logger.info("Creating second H2 DataSource")
-        val dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:~/test");
-        dataSourceBuilder.username("sa");
-        dataSourceBuilder.password("");
-        return dataSourceBuilder.build();
-    }
+    // @Bean
+    // public fun secondH2(): DataSource {
+    //     logger.info("Creating second H2 DataSource")
+    //     val dataSourceBuilder = DataSourceBuilder.create();
+    //     dataSourceBuilder.driverClassName("org.h2.Driver");
+    //     dataSourceBuilder.url("jdbc:h2:~/test");
+    //     dataSourceBuilder.username("sa");
+    //     dataSourceBuilder.password("");
+    //     return dataSourceBuilder.build();
+    // }
 
     // @Bean
     // public fun postgresDataSource(): DataSource {
