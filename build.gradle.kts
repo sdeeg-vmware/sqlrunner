@@ -15,6 +15,10 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
 
+kotlin { // Extension for easy setup
+    jvmToolchain(17) // Target version of generated JVM bytecode
+}
+
 repositories {
 	mavenCentral()
 }
